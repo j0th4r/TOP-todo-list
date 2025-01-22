@@ -1,4 +1,3 @@
-// task.js
 export class Task {
   constructor(taskTitle, saveTasksToStorage, taskModal, editModal, updateCounter) {
     this.taskTitle = taskTitle;
@@ -37,7 +36,8 @@ export class Task {
     checkbox.classList.add("task-checkbox");
 
     checkbox.addEventListener('change', () => {
-      this.updateCounter("active");
+      this.saveTasksToStorage();
+      this.updateCounter(taskList.classList.contains('completed-active') ? "completed" : "active");
     });
 
     const label = document.createElement("label");
