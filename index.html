@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Todo app</title>
+
+  <link rel="stylesheet" href="styles.css">
+  
+  <style>
+    
+  </style>
+</head>
+<body>
+
+  <div class="name">
+    <h1>TODO</h1>
+    <button id="theme-sw">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"><path fill="#FFF" fill-rule="evenodd" d="M13 21a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-5.657-2.343a1 1 0 010 1.414l-2.121 2.121a1 1 0 01-1.414-1.414l2.12-2.121a1 1 0 011.415 0zm12.728 0l2.121 2.121a1 1 0 01-1.414 1.414l-2.121-2.12a1 1 0 011.414-1.415zM13 8a5 5 0 110 10 5 5 0 010-10zm12 4a1 1 0 110 2h-3a1 1 0 110-2h3zM4 12a1 1 0 110 2H1a1 1 0 110-2h3zm18.192-8.192a1 1 0 010 1.414l-2.12 2.121a1 1 0 01-1.415-1.414l2.121-2.121a1 1 0 011.414 0zm-16.97 0l2.121 2.12A1 1 0 015.93 7.344L3.808 5.222a1 1 0 011.414-1.414zM13 0a1 1 0 011 1v3a1 1 0 11-2 0V1a1 1 0 011-1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26"><path fill="#FFF" fill-rule="evenodd" d="M13 0c.81 0 1.603.074 2.373.216C10.593 1.199 7 5.43 7 10.5 7 16.299 11.701 21 17.5 21c2.996 0 5.7-1.255 7.613-3.268C23.22 22.572 18.51 26 13 26 5.82 26 0 20.18 0 13S5.82 0 13 0z"/></svg>
+    </button>
+  </div>
+  
+
+  <div class="add-task">
+    <div class="input-container">
+      <input type="checkbox" id="check">
+      <label for="check"></label>
+      <input type="text" id="input" class="input" placeholder="Create a new todo...">
+    </div>
+  </div>
+
+  <div class="task-list"></div>
+
+  <div id="task-modal" class="modal">
+    <div class="modal-content">
+      <span id="close-modal" class="close-btn">&times;</span>
+      <h2 id="modal-task-title"></h2>
+      <div class="label">
+        Description:
+        <p id="modal-task-desc"></p>
+      </div>
+      
+      <div class="label">
+        Due Date:
+        <p id="modal-task-date"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="edit-task-modal" class="edit-modal">
+    <div class="edit-modal-content">
+      <span id="edit-close-modal" class="edit-close-btn">&times;</span>
+      <p class="label-title">Title:</p>
+      <input name="title" type="text" id="title" class="edit-task-title" placeholder="Edit task title">
+      <p>Description:</p>
+      <textarea name="description" id="desc" class="edit-task-desc" placeholder="Edit task description"></textarea>
+      <p>Due Date:</p>
+      <input type="date" id="date" class="edit-task-date">
+      <svg id="save-edit" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="20px" fill="#e8eaed"><path d="M816-672v456q0 29.7-21.15 50.85Q773.7-144 744-144H216q-29.7 0-50.85-21.15Q144-186.3 144-216v-528q0-29.7 21.15-50.85Q186.3-816 216-816h456l144 144ZM480-252q45 0 76.5-31.5T588-360q0-45-31.5-76.5T480-468q-45 0-76.5 31.5T372-360q0 45 31.5 76.5T480-252ZM264-552h336v-144H264v144Z"/></svg>
+    </div>
+  </div>
+  
+
+  <div class="task-footer">
+    <div class="task-count">
+      <!-- Add dynamic number -->0 items left
+    </div>
+    
+    <div class="task-filter">
+      <button id="btn" class="all-btn">All</button>
+      <button id="btn" class="active-btn">Active</button>
+      <button id="btn" class="completed-btn">Completed</button>
+    </div>
+
+    <button class="clear-btn">
+      Clear Completed
+    </button>
+
+  </div>
+  <script src="index.js" defer></script>
+</body>
+</html>
