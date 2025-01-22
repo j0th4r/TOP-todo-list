@@ -4,12 +4,10 @@ import { updateCounter } from './taskCounter';
 import { TaskModal, EditModal } from './modal';
 import { Task } from './task';
 import { TaskFilters } from './filters';
-
-//Import css
-import './styles.css'
+import './styles.css';
 
 // Global task index
-let taskIndex = 0;
+let taskIndex = loadTasksFromStorage();
 
 // Initialize the application
 function initializeApp() {
@@ -26,8 +24,8 @@ function initializeApp() {
   const taskList = document.querySelector('.task-list');
   const clearBtn = document.querySelector('.clear-btn');
 
-  // Load existing tasks
-  loadTasksFromStorage();
+  // Load existing tasks and set taskIndex
+  console.log('Task index:', taskIndex);
 
   // Add task event listener
   inputField.addEventListener('keypress', (event) => {
@@ -81,7 +79,10 @@ function initializeApp() {
 }
 
 // Initialize app when DOM is ready
-document.addEventListener('DOMContentLoaded', initializeApp);
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM fully loaded and parsed'); // Debug log
+  initializeApp();
+});
 
 // Export the taskIndex for other modules if needed
 export { taskIndex };
