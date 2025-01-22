@@ -5,6 +5,39 @@ const filterActive = document.querySelector('.active-btn');
 const filterCompleted = document.querySelector('.completed-btn');
 filterAll.style.color = "#3A7CFD";
 
+function saveTasksToStorage() {
+  const tasks = [];
+  document.querySelectorAll('.task').forEach(taskDiv => {
+    tasks.push({
+      title: taskDiv.querySelector('.task-text').textContent,
+      description: taskDiv.querySelector('.task-desc').textContent,
+      date: taskDiv.querySelector('.task-date').textContent,
+      completed: taskDiv.querySelector('.task-checkbox').checked
+    });
+  });
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasksFromStorage() {
+  const savedTasks = localStorage.getItem('tasks');
+  if (savedTasks) {
+    const tasks = JSON.parse(savedTasks);
+    tasks.forEach((taskData, index) => {
+      const task = new Task(taskData.title);
+      taskIndex = index + 1;
+      task.createTask(taskIndex);
+      
+      // Set additional task data
+      const taskDiv = document.querySelectorAll('.task')[index];
+      taskDiv.querySelector('.task-desc').textContent = taskData.description;
+      taskDiv.querySelector('.task-date').textContent = taskData.date;
+      taskDiv.querySelector('.task-checkbox').checked = taskData.completed;
+    });
+    updateCounter("active");
+  }
+}
+
+
 function resetButtonStyles() {
   const filterButtons = document.querySelectorAll('#btn');
   filterButtons.forEach(button => {
@@ -15,6 +48,7 @@ function resetButtonStyles() {
 function removeTask(checkbox) {
   const taskDiv = checkbox.closest(".task");
   taskDiv.remove();
+  saveTasksToStorage();
   if(taskList.classList.contains('completed-active')) {
     updateCounter("completed");
   } else {
@@ -70,9 +104,10 @@ function editModal(task) {
 
   const saveChanges = () => {
     task.querySelector(".task-text").textContent = inputTitle.value;
-    task.querySelector(".task-desc").textContent = `${inputDesc.value}`;
-    task.querySelector(".task-date").textContent = `${inputDate.value}`;
+    task.querySelector(".task-desc").textContent = inputDesc.value;
+    task.querySelector(".task-date").textContent = inputDate.value;
     modalEdit.style.display = "none";
+    saveTasksToStorage(); // Save after editing
   };
 
   modalEdit.querySelector("#save-edit").addEventListener("click", saveChanges, { once: true });
@@ -189,9 +224,9 @@ class Task {
     taskDiv.appendChild(taskContainerDiv);
 
     taskList.appendChild(taskDiv);
+    
+    saveTasksToStorage();
   }
-
-
 }
 
 let taskIndex = 0;
@@ -225,6 +260,7 @@ clearBtn.addEventListener('click', function () {
     const taskDiv = checkbox.closest(".task"); // Get the parent task div
     taskDiv.remove(); // Remove the task div
   });
+  saveTasksToStorage();
   if(taskList.classList.contains('completed-active')) {
     updateCounter("completed");
   } else {
@@ -295,6 +331,14 @@ filterCompleted.addEventListener('click', function () {
   });
   updateCounter("completed");
 });
+
+document.querySelector('.task-list').addEventListener('change', (e) => {
+  if (e.target.classList.contains('task-checkbox')) {
+    saveTasksToStorage();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', loadTasksFromStorage);
 
 
 let lightmode = localStorage.getItem('lightmode');
