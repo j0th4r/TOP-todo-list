@@ -1,3 +1,4 @@
+// Import all modules
 import { saveTasksToStorage, loadTasksFromStorage } from './storage';
 import { initializeTheme } from './theme';
 import { updateCounter } from './taskCounter';
