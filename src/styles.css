@@ -375,6 +375,7 @@ label {
   .edit-btn {
     position: absolute;
     right: 28px;
+    top: 0;
   }
 
   .task-text {
@@ -562,5 +563,44 @@ label {
       letter-spacing: -0.17px;
       padding: 0;
     }
+  }
+  
+  .edit-modal-content {
+    width: 287px;
+
+    p, input, textarea{
+      font-size: 12px;
+      width: 287px;
+    }
+
+    p {
+      margin-top: 20px;
+    }
+  }
+
+  .modal-content {
+    width: 287px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    .label {
+      font-size: 12px;
+      width: 287px;
+    }
+
+    #modal-task-desc, #modal-task-date {
+      font-size: 12px;
+    }
+  }
+
+  .edit-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  #save-edit {
+    top: 13.5px;
   }
 }

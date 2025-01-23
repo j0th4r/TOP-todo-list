@@ -48,9 +48,9 @@ export class TaskFilters {
     tasks.forEach(task => {
       const checkbox = task.querySelector('.task-checkbox');
       if (checkbox.checked) {
-        task.style.display = 'none'; // Hide completed tasks
+        task.style.display = 'none';
       } else {
-        task.style.display = 'flex'; // Show active tasks
+        task.style.display = 'flex';
       }
   
       checkbox.addEventListener('change', function () {

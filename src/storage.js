@@ -33,7 +33,6 @@ export function loadTasksFromStorage() {
       } 
     });
     updateCounter("active");
-    console.log(tasks.length);
     return tasks.length;
   }
   return 0;

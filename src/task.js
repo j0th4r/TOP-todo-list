@@ -71,10 +71,8 @@ export class Task {
     removeSvg.appendChild(removePath);
     removeBtn.appendChild(removeSvg);
 
-    // Using the class method for removal
     removeBtn.addEventListener('click', () => this.removeTask(checkbox));
 
-    // Edit button
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-btn");
 

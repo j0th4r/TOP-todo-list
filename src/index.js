@@ -6,28 +6,19 @@ import { Task } from './task';
 import { TaskFilters } from './filters';
 import './styles.css';
 
-// Global task index
 let taskIndex = loadTasksFromStorage();
 
-// Initialize the application
 function initializeApp() {
-  // Initialize components
   const taskModal = new TaskModal();
   const editModal = new EditModal(saveTasksToStorage);
   const taskFilters = new TaskFilters(updateCounter);
   
-  // Initialize theme
   initializeTheme();
   
-  // Setup task creation
   const inputField = document.querySelector('#input');
   const taskList = document.querySelector('.task-list');
   const clearBtn = document.querySelector('.clear-btn');
 
-  // Load existing tasks and set taskIndex
-  console.log('Task index:', taskIndex);
-
-  // Add task event listener
   inputField.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
       const taskTitle = inputField.value;
@@ -54,7 +45,6 @@ function initializeApp() {
     }
   });
 
-  // Clear completed tasks
   clearBtn.addEventListener('click', function() {
     const checkboxes = taskList.querySelectorAll(".task-checkbox:checked");
     checkboxes.forEach(checkbox => {
@@ -69,7 +59,6 @@ function initializeApp() {
     }
   });
 
-  // Save tasks when checkbox state changes
   taskList.addEventListener('change', (e) => {
     if (e.target.classList.contains('task-checkbox')) {
       saveTasksToStorage();
@@ -78,11 +67,8 @@ function initializeApp() {
   });
 }
 
-// Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM fully loaded and parsed'); // Debug log
   initializeApp();
 });
 
-// Export the taskIndex for other modules if needed
 export { taskIndex };
