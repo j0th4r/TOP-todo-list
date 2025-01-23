@@ -70,6 +70,3 @@ function initializeApp() {
 document.addEventListener('DOMContentLoaded', () => {
   initializeApp();
 });
-
-// Export the taskIndex for other modules if needed
-export { taskIndex };
