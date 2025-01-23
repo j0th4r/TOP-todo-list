@@ -70,5 +70,3 @@ function initializeApp() {
 document.addEventListener('DOMContentLoaded', () => {
   initializeApp();
 });
-
-export { taskIndex };
